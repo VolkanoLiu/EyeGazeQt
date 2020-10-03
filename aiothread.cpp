@@ -36,7 +36,9 @@ void AIOThread::run()
         }
         if(compareTimeLater(*pUpdateTime, lastUpdateTime)) {
             lastUpdateTime = *pUpdateTime;
-            auto data = pDeque->back();
+            eye_data_t data = pDeque->back();
+            data.l_y = 1440 - data.l_y;
+            data.r_y = 1440 - data.r_y;
             emit dataUpdated(data, lastUpdateTime);
         }
         pRWMutex->unlock();

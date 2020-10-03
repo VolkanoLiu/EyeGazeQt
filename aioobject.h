@@ -14,6 +14,7 @@ public:
 
 signals:
     void updateCursorsDirectly(eye_data_t);
+    void setIndicator(char s, bool b);
 public slots:
     void updateData(eye_data_t data ,time_t time);
 private:

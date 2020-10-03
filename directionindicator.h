@@ -24,14 +24,14 @@ public:
     DirectionIndicator(directions_t dir, QGraphicsItem *parent);
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-
+    void setIFocus(bool focus);
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
 
 private:
     directions_t direction = DI_L;
     QPen pen;
-    void setIFocus(bool focus);
+
 };
 
 #endif // DIRECTIONINDICATOR_H

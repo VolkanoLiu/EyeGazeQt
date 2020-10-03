@@ -5,14 +5,18 @@
 #include <QPen>
 #include "directionindicator.h"
 
-class HUD : public QGraphicsItem
+class HUD : public QGraphicsObject
 {
+    Q_OBJECT
 public:
     HUD();
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-private:
     DirectionIndicator *l, *r, *u, *d, *lu, *ld, *ru, *rd;
+public slots:
+    void updateIndicator(char s, bool b);
+private:
+
 };
 
 #endif // HUD_H

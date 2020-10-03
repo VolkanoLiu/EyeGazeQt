@@ -32,8 +32,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // Configure eye cursors
     c_left = new Cursor(QPen(Qt::red, 3));
     c_left->setPos(128, 128);
-    c_right = new Cursor(QPen(Qt::green, 3));
-    c_right->setPos(256, 256);
+    // c_right = new Cursor(QPen(Qt::green, 3));
+    // c_right->setPos(256, 256);
 
     // Add a HUD display
     hud = new HUD;
@@ -42,11 +42,12 @@ MainWindow::MainWindow(QWidget *parent) :
     // scene->addItem(VFI);
     scene->addItem(hud);
     scene->addItem(c_left);
-    scene->addItem(c_right);
+    // scene->addItem(c_right);
 
     // Add AIO Objects
-    // ob = new AIOObject();
-    // connect(ob, SIGNAL(updateCursorsDirectly(eye_data_t)), this, SLOT(setCursors(eye_data_t)));
+     ob = new AIOObject();
+     connect(ob, SIGNAL(updateCursorsDirectly(eye_data_t)), this, SLOT(setCursors(eye_data_t)));
+     connect(ob, SIGNAL(setIndicator(char,bool)), hud, SLOT(updateIndicator(char,bool)));
 }
 
 MainWindow::~MainWindow()
@@ -56,7 +57,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::setCursors(eye_data_t data)
 {
-    c_left->setPos(data.l_x, data.l_y);
-    c_right->setPos(data.r_x, data.r_y);
+    int x = (data.l_x + data.r_x) / 2;
+    int y = (data.l_y + data.r_y) / 2;
+    c_left->setPos(x, y);
+    // c_left->setPos(data.l_x, data.l_y);
+    // c_right->setPos(data.r_x, data.r_y);
     std::cout << time(nullptr) << std::endl;
 }

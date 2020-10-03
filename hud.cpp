@@ -34,3 +34,28 @@ void HUD::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidg
     painter->drawLine(720, 0, 720, 1439);
     painter->drawLine(1840, 0, 1840, 1439);
 }
+
+void HUD::updateIndicator(char s, bool b)
+{
+    l->setIFocus(false);
+    r->setIFocus(false);
+    u->setIFocus(false);
+    d->setIFocus(false);
+    switch (s) {
+    case '4':
+        l->setIFocus(b);
+        break;
+    case '6':
+        r->setIFocus(b);
+        break;
+    case '8':
+        u->setIFocus(b);
+        break;
+    case '2':
+        d->setIFocus(b);
+        break;
+    default:
+        break;
+    }
+    update();
+}
