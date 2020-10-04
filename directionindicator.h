@@ -7,14 +7,16 @@
 #include <QGraphicsSceneMouseEvent>
 
 typedef enum {
-    DI_L = 0,
-    DI_R,
-    DI_U,
-    DI_D,
-    DI_LU,
-    DI_RU,
+    DI_BRAKE = 0,
     DI_LD,
-    DI_RD
+    DI_D,
+    DI_RD,
+    DI_L,
+    DI_STOP,
+    DI_R,
+    DI_LU,
+    DI_U,
+    DI_RU
 } directions_t;
 
 class DirectionIndicator : public QGraphicsItem

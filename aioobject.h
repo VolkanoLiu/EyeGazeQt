@@ -5,6 +5,7 @@
 #include <QPoint>
 #include <deque>
 #include "aiothread.h"
+#include "directionindicator.h"
 
 class AIOObject : public QObject
 {
@@ -25,6 +26,7 @@ private:
     float width_offset_b, height_offset_b;
     QPoint resolution;
     std::deque<QPointF> former_points;
+    directions_t current_dir = DI_STOP;
 };
 
 #endif // AIOOBJECT_H

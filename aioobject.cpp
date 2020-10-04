@@ -103,29 +103,38 @@ void AIOObject::updateData(eye_data_t data, time_t time)
     char sdata = '5';
 
     if(valid_num_l > 8) {
-        emit setIndicator('4', true);
+        current_dir = DI_L;
         sdata = '4';
     }
     else if(valid_num_r > 8) {
-        emit setIndicator('6', true);
+        current_dir = DI_R;
         sdata = '6';
     }
     else if(valid_num_u > 8) {
-        emit setIndicator('8', true);
+        current_dir = DI_U;
         sdata = '8';
     }
     else if(valid_num_d > 8) {
-        emit setIndicator('2', true);
+        current_dir = DI_D;
         sdata = '2';
     }
     else if(valid_num_oor > 8) {
-        emit setIndicator('x', false);
+        current_dir = DI_BRAKE;
         sdata = '0';
     }
     else {
-        emit setIndicator('xx', false);
-        sdata = '5';
+        if(current_dir == DI_U && valid_num_u >= 4) {
+            sdata = '8';
+        }
+        else if(current_dir == DI_D && valid_num_d >= 4) {
+            sdata = '2';
+        }
+        else {
+            current_dir = DI_STOP;
+            sdata = '5';
+        }
     }
+    emit setIndicator(sdata, true);
     serial.write(&sdata, 1);
 
 
