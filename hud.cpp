@@ -41,6 +41,8 @@ void HUD::updateIndicator(char s, bool b)
     r->setIFocus(false);
     u->setIFocus(false);
     d->setIFocus(false);
+    lu->setIFocus(false);
+    ru->setIFocus(false);
     switch (s) {
     case '4':
         l->setIFocus(b);
@@ -53,6 +55,18 @@ void HUD::updateIndicator(char s, bool b)
         break;
     case '2':
         d->setIFocus(b);
+        break;
+    case '7':
+        lu->setIFocus(b);
+        break;
+    case '9':
+        ru->setIFocus(b);
+        break;
+    case '1':
+        lu->setIFocus(b);
+        break;
+    case '3':
+        lu->setIFocus(b);
         break;
     default:
         break;

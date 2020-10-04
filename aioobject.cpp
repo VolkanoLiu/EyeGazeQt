@@ -118,15 +118,31 @@ void AIOObject::updateData(eye_data_t data, time_t time)
         current_dir = DI_D;
         sdata = '2';
     }
+    else if(valid_num_lu > 8) {
+        current_dir = DI_LU;
+        sdata = '9';
+    }
+    else if(valid_num_ru > 8) {
+        current_dir = DI_RU;
+        sdata = '7';
+    }
+//    else if(valid_num_ld > 8) {
+//        current_dir = DI_LD;
+//        sdata = '1';
+//    }
+//    else if(valid_num_rd > 8) {
+//        current_dir = DI_RD;
+//        sdata = '3';
+//    }
     else if(valid_num_oor > 8) {
         current_dir = DI_BRAKE;
         sdata = '0';
     }
     else {
-        if(current_dir == DI_U && valid_num_u >= 4) {
+        if(current_dir == DI_U && valid_num_u >= 2) {
             sdata = '8';
         }
-        else if(current_dir == DI_D && valid_num_d >= 4) {
+        else if(current_dir == DI_D && valid_num_d >= 2) {
             sdata = '2';
         }
         else {
