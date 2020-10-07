@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QCamera>
+#include <QCameraInfo>
 #include <QCameraViewfinder>
 #include <QTimer>
 #include <QGraphicsVideoItem>

@@ -51,6 +51,7 @@ void AIOObject::updateData(eye_data_t data, time_t time)
         } else {
             former_points.push_back(QPointF(9999, 9999));
         }
+        emit updateCursorsDirectly(data);
         return;
     }
     if(!CHECK_X_INRANGE(data.l_x)){
@@ -66,6 +67,7 @@ void AIOObject::updateData(eye_data_t data, time_t time)
         } else {
             former_points.push_back(QPointF(9999, 9999));
         }
+        emit updateCursorsDirectly(data);
         return;
     }
     if(!CHECK_Y_INRANGE(data.l_y)){
@@ -88,14 +90,22 @@ void AIOObject::updateData(eye_data_t data, time_t time)
 
     // Count the valid points
     int valid_num = std::count_if(former_points.begin(), former_points.end(), CHECK_POINT_INRANGE(0, 720, 420, 1840));
-    DEF_VALID_POINT_NUM(l, 0, 720, 420, 1020);
-    DEF_VALID_POINT_NUM(r, 1840, 2560, 420, 1020);
+//    DEF_VALID_POINT_NUM(l, 0, 720, 420, 1020);
+//    DEF_VALID_POINT_NUM(r, 1840, 2560, 420, 1020);
+//    DEF_VALID_POINT_NUM(u, 720, 1840, 0, 420);
+//    DEF_VALID_POINT_NUM(d, 720, 1840, 1020, 1440);
+//    DEF_VALID_POINT_NUM(lu, 0, 720, 0, 420);
+//    DEF_VALID_POINT_NUM(ru, 1840, 2560, 0, 420);
+//    DEF_VALID_POINT_NUM(ld, 0, 720, 1020, 1440);
+//    DEF_VALID_POINT_NUM(rd, 1840, 2560, 1020, 1440);
+    DEF_VALID_POINT_NUM(lu, 0, 720, 420, 1020);
+    DEF_VALID_POINT_NUM(ru, 1840, 2560, 420, 1020);
     DEF_VALID_POINT_NUM(u, 720, 1840, 0, 420);
     DEF_VALID_POINT_NUM(d, 720, 1840, 1020, 1440);
-    DEF_VALID_POINT_NUM(lu, 0, 720, 0, 420);
-    DEF_VALID_POINT_NUM(ru, 1840, 2560, 0, 420);
-    DEF_VALID_POINT_NUM(ld, 0, 720, 1020, 1440);
-    DEF_VALID_POINT_NUM(rd, 1840, 2560, 1020, 1440);
+//    DEF_VALID_POINT_NUM(lu, 0, 720, 0, 420);
+//    DEF_VALID_POINT_NUM(ru, 1840, 2560, 0, 420);
+    DEF_VALID_POINT_NUM(l, 0, 720, 1020, 1440);
+    DEF_VALID_POINT_NUM(r, 1840, 2560, 1020, 1440);
     // DEF_VALID_POINT_NUM(r, 420, 1020, 720, 1840);
     DEF_VALID_POINT_NUM(ir, 0, 2560, 0, 1440);
     int valid_num_oor = former_points.size() - valid_num_ir;
@@ -120,11 +130,11 @@ void AIOObject::updateData(eye_data_t data, time_t time)
     }
     else if(valid_num_lu > 8) {
         current_dir = DI_LU;
-        sdata = '9';
+        sdata = '7';
     }
     else if(valid_num_ru > 8) {
         current_dir = DI_RU;
-        sdata = '7';
+        sdata = '9';
     }
 //    else if(valid_num_ld > 8) {
 //        current_dir = DI_LD;

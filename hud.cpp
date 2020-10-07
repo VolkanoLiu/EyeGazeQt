@@ -3,21 +3,21 @@
 HUD::HUD()
 {
     l = new DirectionIndicator(DI_L, this);
-    l->setPos(360, 720);
+    l->setPos(360, 1230);
     r = new DirectionIndicator(DI_R, this);
-    r->setPos(2200, 720);
+    r->setPos(2200, 1230);
     u = new DirectionIndicator(DI_U, this);
     u->setPos(1280, 210);
     d = new DirectionIndicator(DI_D, this);
     d->setPos(1280, 1230);
     lu = new DirectionIndicator(DI_LU, this);
-    lu->setPos(360, 210);
+    lu->setPos(360, 720);
     ru = new DirectionIndicator(DI_RU, this);
-    ru->setPos(2200, 210);
-    ld = new DirectionIndicator(DI_LD, this);
-    ld->setPos(360, 1230);
-    rd = new DirectionIndicator(DI_RD, this);
-    rd->setPos(2200, 1230);
+    ru->setPos(2200, 720);
+//    ld = new DirectionIndicator(DI_LD, this);
+//    ld->setPos(360, 1230);
+//    rd = new DirectionIndicator(DI_RD, this);
+//    rd->setPos(2200, 1230);
 }
 
 QRectF HUD::boundingRect() const

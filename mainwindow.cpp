@@ -8,6 +8,18 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    // Get all the cameras' info
+    QCameraInfo front_cam_info;
+    const QList<QCameraInfo> cameras = QCameraInfo::availableCameras();
+    for(auto item : cameras) {
+        std::cout << item.deviceName().toStdString() << std::endl;
+        if(item.deviceName() == "/dev/video0") {
+            front_cam_info = item;
+            break;
+        }
+    }
+
+
     // Auto generated initialization code
     ui->setupUi(this);
 
@@ -23,14 +35,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->graphicsView->setScene(scene);
 
     // Configure camera and viewfinder item
-    // camera = new QCamera();
-    // VFI = new ViewfinderItem;
-    // VFI->setScale(1);
-    // camera->setViewfinder(VFI);
-    // camera->start();
+     camera = new QCamera(front_cam_info);
+     VFI = new ViewfinderItem;
+     VFI->setScale(2);
+     camera->setViewfinder(VFI);
+     camera->start();
 
     // Configure eye cursors
-    c_left = new Cursor(QPen(Qt::red, 3));
+    c_left = new Cursor(QPen(Qt::blue, 10));
     c_left->setPos(128, 128);
     // c_right = new Cursor(QPen(Qt::green, 3));
     // c_right->setPos(256, 256);
@@ -39,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
     hud = new HUD;
 
     // Add all the items
-    // scene->addItem(VFI);
+    scene->addItem(VFI);
     scene->addItem(hud);
     scene->addItem(c_left);
     // scene->addItem(c_right);
